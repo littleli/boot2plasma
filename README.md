@@ -24,6 +24,11 @@ brew install qemu
 ```
 
 ### Windows
+
+At the moment I highly recommend to use [Dosbox or Virtual Box](#alternative-execution).
+
+This may or may not work:
+
 Install `scoop` from [scoop package manager](https://scoop.sh)
 ```sh
 scoop install qemu

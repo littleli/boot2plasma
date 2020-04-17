@@ -33,12 +33,12 @@ scoop install qemu
 
 There are two decent alternatives to mention here:
 
-1. Dosbox
-2. Oracle Virtual Box
+1. [Dosbox](https://www.dosbox.com)
+2. [Oracle Virtual Box](https://www.virtualbox.org)
 
 ### Dosbox
 
-Dosbox has BOOT command. After you run Dosbox you have to mount filesystem with `b2plasma.img` file as a new drive.
+Dosbox has [BOOT command](https://www.dosbox.com/wiki/BOOT). After you run Dosbox you have to mount filesystem with `b2plasma.img` file as a new drive.
 
 Example series of commands in Dosbox:
 

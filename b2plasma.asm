@@ -126,15 +126,15 @@ s1:     lodsb
         add	[tpos4], byte 3
         dec	cl
         jnz	for_x
-        add	[tpos1],byte 2
+        add	[tpos1], byte 2
         inc	byte [tpos2]
         dec	ch
         jnz	for_y
 
-        add	[pos1],byte spd1
-        sub	[pos2],byte spd2
-        add	[pos3],byte spd3
-        sub	[pos4],byte spd4
+        add	[pos1], byte spd1
+        sub	[pos2], byte spd2
+        add	[pos3], byte spd3
+        sub	[pos4], byte spd4
 	jmp 	waitvr
 
 ; the end of code section

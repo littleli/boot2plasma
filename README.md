@@ -1,59 +1,45 @@
 # boot2plasma
 
-This program is put together using [fasmg](https://flatassembler.net/download.php). It's Flat assembler with the new engine architecture and it's a very good assembler from [@tgrysztar](https://github.com/tgrysztar)
+- [boot2plasma](#boot2plasma)
+	- [How to run?](#how-to-run)
+		- [DOSBox](#dosbox)
+		- [QEMU](#qemu)
+		- [VirtualBox](#virtualbox)
+
+Boot to plasma is an assembler-only port of EXAMPLE1.C from PMODE/W examples. This port is using [fasmg](https://flatassembler.net/download.php), the next generation assembler authored by [@tgrysztar](https://github.com/tgrysztar)
 
 ## How to run?
 
-1. Download `b2plasma.img` from the release section
-2. Install `qemu`
-3. Run `qemu-system-i386 b2plasma.img`
-4. Enjoy!
+First you need to download the latest version of `b2plasma.img` from the [release section](https://github.com/littleli/boot2plasma/releases)
 
-### QEMU installation
+Now you need to install environment which can boot the image.
 
-#### Linux
-Depending on you distribution just use the distribution package manager. On Debian or Ubuntu use:
-```sh
-apt-get install qemu
-```
+These are options you have:
 
-### MacOS
-Install `brew` from [Homebrew](https://brew.sh) and use this command:
-```sh
-brew install qemu
-```
 
-### Windows
+### DOSBox
 
-At the moment I highly recommend to use [Dosbox or Virtual Box](#alternative-execution).
-
-This may or may not work:
-
-Install `scoop` from [scoop package manager](https://scoop.sh)
-```sh
-scoop install qemu
-```
-
-## Alternative execution
-
-There are two decent alternatives to mention here:
-
-1. [Dosbox](https://www.dosbox.com)
-2. [Oracle Virtual Box](https://www.virtualbox.org)
-
-### Dosbox
-
-Dosbox has [BOOT command](https://www.dosbox.com/wiki/BOOT). After you run Dosbox you have to mount filesystem with `b2plasma.img` file as a new drive.
+DOSBox has [BOOT](https://www.dosbox.com/wiki/BOOT) command. After you run Dosbox you have to mount filesystem with `b2plasma.img` file as a new drive.
 
 Example series of commands in Dosbox:
-
 ```sh
 mount c ~/Downloads/b2plasma
 c:
 boot b2plasma.img
 ```
 
-### Oracle Virtual Box
+### QEMU
+
+Download and installation instructions are [here](https://www.qemu.org/download).
+
+Executing command like this should do the trick.
+```sh
+qemu-system-i386 b2image.img
+```
+
+### VirtualBox
+
+Download and installation instructions are on VirtualBox [website](https://www.virtualbox.org).
 
 I keep installation procedure of virtual box upon a user, just with few notes here:
 

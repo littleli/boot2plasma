@@ -19,9 +19,9 @@ These are options you have:
 
 ### DOSBox
 
-DOSBox has [BOOT](https://www.dosbox.com/wiki/BOOT) command. After you run Dosbox you have to mount filesystem with `b2plasma.img` file as a new drive.
+Packages with DOSBox for specific OS can be found on the [website](https://www.dosbox.com/download.php?main=1). You have to use [BOOT](https://www.dosbox.com/wiki/BOOT) command. After you run DOSBox you have to mount filesystem with `b2plasma.img` file as a new drive.
 
-Example series of commands in Dosbox:
+Example series of commands from the inside DOSBox:
 ```sh
 mount c ~/Downloads/b2plasma
 c:

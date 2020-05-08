@@ -123,18 +123,18 @@ s1:     lodsb
         mov	[es:bp], ah
         inc	bp
         inc	byte [tpos3]
-        add	[tpos4], byte 3
+        add	byte [tpos4], 3
         dec	cl
         jnz	for_x
-        add	[tpos1], byte 2
+        add	byte [tpos1], 2
         inc	byte [tpos2]
         dec	ch
         jnz	for_y
 
-        add	[pos1], byte spd1
-        sub	[pos2], byte spd2
-        add	[pos3], byte spd3
-        sub	[pos4], byte spd4
+        add	byte [pos1], spd1
+        sub	byte [pos2], spd2
+        add	byte [pos3], spd3
+        sub	byte [pos4], spd4
 	jmp 	waitvr
 
 ; the end of code section

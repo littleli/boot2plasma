@@ -20,22 +20,29 @@ color2  equ     BLUE
 
 entrypoint:
 	push	cs
-	push	cs
 	pop	ds
+	push	cs
 	pop	es
 	xor 	bx, bx
 
 ; palette computation
         mov	ax, 0x3F00
         mov	di, pal
-        push	di
-        mov	cx, 768
+        mov	cx, 768 * 3
         rep stosb					; in DI rests offset of waves
 pal_loop:
-	mov	[bx + pal + color1 +   0 * 3], al	; red ascending
-        mov	[bx + pal + color1 +  64 * 3], ah	; red descending
-        mov	[bx + pal + color2 + 128 * 3], al	; green ascending
-        mov	[bx + pal + color2 + 192 * 3], ah	; green descending
+	mov	[bx + pal + RED   +   0 * 3], al	; red ascending
+        mov	[bx + pal + RED   +  64 * 3], ah	; red descending
+        mov	[bx + pal + GREEN + 128 * 3], al	; green ascending
+        mov	[bx + pal + GREEN + 192 * 3], ah	; green descending
+        mov     [bx + pal + RED   + 256 * 3], al        ; red ascending
+        mov     [bx + pal + RED   + 320 * 3], ah        ; red descending
+        mov     [bx + pal + BLUE  + 384 * 3], al        ; blue ascending
+        mov     [bx + pal + BLUE  + 448 * 3], ah        ; blue descending        
+        mov     [bx + pal + GREEN + 512 * 3], al        ; green ascending
+        mov     [bx + pal + GREEN + 576 * 3], ah        ; green descending
+        mov     [bx + pal + BLUE  + 640 * 3], al        ; blue ascending
+        mov     [bx + pal + BLUE  + 704 * 3], ah        ; blue descending
         dec	ah
         inc	al
         add	bx, 3
@@ -44,7 +51,6 @@ pal_loop:
 
 ; waves computation
         mov	cx, 0x100	; array size of 0x100
-        push	cx		; store same for palette
         finit			; coprocessor init
 wave_loop:   
 	fld	dword [konst]
@@ -86,15 +92,12 @@ wave_loop:
         out     dx, al
         sti
 
-set_palette:
-	pop	cx
-	pop	dx
-	mov	ax, 0x1012
-	xor	bx, bx
-	int	0x10		; use bios service call to set the palette
+	mov	cx, 0x100
+	mov	dx, pal
+        call    set_palette
 	
 	push	word 0xA000
-	pop	es		; use 386 segment register fs, useful for xlatb instruction
+	pop	es
 
 waitvr: mov	dx, 0x3DA
 w1:	in	al, dx
@@ -135,7 +138,39 @@ s1:     lodsb
         sub	byte [pos2], spd2
         add	byte [pos3], spd3
         sub	byte [pos4], spd4
+
+        in      al, 0x60
+        dec     al
+        jnz     waitvr
+
+        push    cx
+        push    dx        
+        mov     dx, [pal_offset]
+        add     dx, 768
+        cmp     dx, pal3
+        jng     next_pal
+        mov     dx, pal1        ; reset offset
+next_pal:
+        mov     [pal_offset], dx   
+        mov     cx, 0x100
+        call    set_palette
+        pop     dx
+        pop     cx
 	jmp 	waitvr
+
+set_palette:                    ; cx = colors, es:dx = palette address offset
+        push    es
+        push    ax
+        push    bx
+        push    cs
+        pop     es
+	mov	ax, 0x1012
+	xor	bx, bx
+	int	0x10		; use bios service call to set the palette
+        pop     bx
+        pop     ax
+        pop     es
+        ret
 
 ; the end of code section
 
@@ -143,6 +178,9 @@ pos1:	db	0
 pos2:	db	0
 pos3:	db	0
 pos4:	db	0
+
+pal_offset:
+        dw      pal1
 
 ; pi = 355 ⁄ 113
 konst:	dd	355.0 / 113 / 128		; pi / 128
@@ -159,6 +197,10 @@ tpos2:	rb    	1
 tpos3:  rb	1
 tpos4:	rb	1
 
-pal:	rb	768
+pal:
+pal1:   rb	768
+pal2:   rb	768
+pal3:	rb	768
+
 waves:	rb	256
 

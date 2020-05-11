@@ -27,22 +27,22 @@ entrypoint:
 
 ; palette computation
         mov	ax, 0x3F00
-        mov	di, pal
+        mov	di, pal1
         mov	cx, 768 * 3
         rep stosb					; in DI rests offset of waves
 pal_loop:
-	mov	[bx + pal + RED   +   0 * 3], al	; red ascending
-        mov	[bx + pal + RED   +  64 * 3], ah	; red descending
-        mov	[bx + pal + GREEN + 128 * 3], al	; green ascending
-        mov	[bx + pal + GREEN + 192 * 3], ah	; green descending
-        mov     [bx + pal + RED   + 256 * 3], al        ; red ascending
-        mov     [bx + pal + RED   + 320 * 3], ah        ; red descending
-        mov     [bx + pal + BLUE  + 384 * 3], al        ; blue ascending
-        mov     [bx + pal + BLUE  + 448 * 3], ah        ; blue descending        
-        mov     [bx + pal + GREEN + 512 * 3], al        ; green ascending
-        mov     [bx + pal + GREEN + 576 * 3], ah        ; green descending
-        mov     [bx + pal + BLUE  + 640 * 3], al        ; blue ascending
-        mov     [bx + pal + BLUE  + 704 * 3], ah        ; blue descending
+	mov	[bx + pal1 + RED   +   0 * 3], al
+        mov	[bx + pal1 + RED   +  64 * 3], ah
+        mov	[bx + pal1 + GREEN + 128 * 3], al
+        mov	[bx + pal1 + GREEN + 192 * 3], ah
+        mov     [bx + pal2 + GREEN +   0 * 3], al
+        mov     [bx + pal2 + GREEN +  64 * 3], ah
+        mov     [bx + pal2 + BLUE  + 128 * 3], al
+        mov     [bx + pal2 + BLUE  + 192 * 3], ah
+        mov     [bx + pal3 + BLUE  +   0 * 3], al
+        mov     [bx + pal3 + BLUE  +  64 * 3], ah
+        mov     [bx + pal3 + RED   + 128 * 3], al
+        mov     [bx + pal3 + RED   + 192 * 3], ah
         dec	ah
         inc	al
         add	bx, 3
@@ -93,7 +93,7 @@ wave_loop:
         sti
 
 	mov	cx, 0x100
-	mov	dx, pal
+	mov	dx, pal1
         call    set_palette
 	
 	push	word 0xA000
@@ -197,7 +197,6 @@ tpos2:	rb    	1
 tpos3:  rb	1
 tpos4:	rb	1
 
-pal:
 pal1:   rb	768
 pal2:   rb	768
 pal3:	rb	768

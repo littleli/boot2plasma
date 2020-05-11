@@ -5,6 +5,7 @@
 		- [DOSBox](#dosbox)
 		- [QEMU](#qemu)
 		- [VirtualBox](#virtualbox)
+	- [Interaction](#interaction)
 
 Boot to plasma is an assembler-only port of EXAMPLE1.C from PMODE/W examples. This port is using [fasmg](https://flatassembler.net/download.php), the next generation assembler authored by [@tgrysztar](https://github.com/tgrysztar)
 
@@ -45,3 +46,10 @@ I keep installation procedure of virtual box upon a user, just with few notes he
 
 - Use `Other/DOS` as system setup
 - No need to setup hardrive space, boot `b2plasma.img` from a floppy drive. This makes the whole image only ~3KB in size
+
+## Interaction
+
+After the boot, press `ESC` key to rotate color palette among:
+- red + green
+- green + blue
+- blue + red

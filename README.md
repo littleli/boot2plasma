@@ -53,3 +53,7 @@ After the boot, press `ESC` key to rotate color palette among:
 - red + green
 - green + blue
 - blue + red
+
+## Preview
+
+[https://vimeo.com/419123046](https://vimeo.com/419123046)

@@ -6,6 +6,7 @@
 		- [QEMU](#qemu)
 		- [VirtualBox](#virtualbox)
 	- [Interaction](#interaction)
+	- [Preview](#preview)
 
 Boot to plasma is an assembler-only port of EXAMPLE1.C from PMODE/W examples. This port is using [fasmg](https://flatassembler.net/download.php), the next generation assembler authored by [@tgrysztar](https://github.com/tgrysztar)
 

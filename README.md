@@ -1,12 +1,13 @@
 # boot2plasma
 
-- [boot2plasma](#boot2plasma)
-	- [How to run?](#how-to-run)
-		- [DOSBox](#dosbox)
-		- [QEMU](#qemu)
-		- [VirtualBox](#virtualbox)
-	- [Interaction](#interaction)
-	- [Preview](#preview)
+This piece was awarded 2nd price in in the 2020 contest, PC Booter category, dedicated to [The 20th anniversary of the first official release of fasm](https://contest.flatassembler.net/)
+
+- [How to run?](#how-to-run)
+- [DOSBox](#dosbox)
+- [QEMU](#qemu)
+- [VirtualBox](#virtualbox)
+- [Interaction](#interaction)
+- [Preview](#preview)
 
 Boot to plasma is an assembler-only port of EXAMPLE1.C from PMODE/W examples. This port is using [fasmg](https://flatassembler.net/download.php), the next generation assembler authored by [@tgrysztar](https://github.com/tgrysztar)
 
